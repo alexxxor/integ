@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viel Spaß</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Viel Spaß</h1>
+
+    <div class="source-selector-container">
+        <label for="source-select">Lernset auswählen:</label>
+        <select id="source-select">
+            </select>
+    </div>
+    <div id="progress-container">
+        <div id="progress-bar">0%</div>
+    </div>
+
+    <div class="flashcard-container">
+        <div class="flashcard">
+            <div class="card-front">
+                <div id="question" class="card-text-content"></div> 
+                <p id="card-counter"></p>
+            </div>
+            <div class="card-back">
+                <div id="answer" class="card-text-content"></div> 
+                <p id="card-counter-back"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button id="prev-button">Vorherige</button>
+        <button id="flip-button">Umdrehen</button>
+        <button id="next-button">Nächste</button>
+        <button onclick="clearFlashcardCache()">Cache löschen</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
