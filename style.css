@@ -1,0 +1,347 @@
+/* style.css - Vollständige Version */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start; 
+    min-height: 100vh;
+    background-color: #f9f9f9; 
+    color: #1d1d1f; 
+    padding: 20px;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit; 
+}
+
+h1 {
+    color: #1d1d1f;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600; 
+    font-size: 2.2em;
+}
+#question {
+    font-size: 1.2rem; 
+}
+
+/* LADEBALKEN STYLES */
+#progress-container {
+    width: 80%;
+    max-width: 600px;
+    background-color: #e5e5ea; 
+    border-radius: 12px; 
+    margin: 0 auto 30px auto; 
+    padding: 4px;
+    display: none; 
+    box-shadow: none; 
+}
+
+#progress-bar {
+    width: 0%;
+    height: 16px; 
+    background-color: #007aff; 
+    border-radius: 10px; 
+    text-align: center;
+    line-height: 16px; 
+    color: white;
+    font-weight: 500; 
+    font-size: 0.75em;
+    transition: width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); 
+}
+
+/* DROPDOWN STYLES */
+.source-selector-container {
+    margin-bottom: 30px; 
+    text-align: center; 
+    padding: 0; 
+    background-color: transparent; 
+    border-radius: 0;
+    box-shadow: none;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.source-selector-container label {
+    margin-right: 8px;
+    font-weight: 500;
+    color: #636366; 
+    font-size: 15px;
+}
+
+#source-select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #d1d1d6; 
+    font-size: 15px;
+    background-color: #ffffff;
+    color: #1d1d1f;
+    cursor: pointer;
+    min-width: 200px; 
+}
+
+#source-select:focus {
+    outline: none;
+    border-color: #007aff;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3); 
+}
+
+/* FLASHCARD STYLES */
+.flashcard-container {
+    perspective: 1000px;
+    width: 650px;       
+    min-height: 450px;  
+    margin-bottom: 30px; 
+    display: flex; 
+    flex-direction: column;
+}
+
+.flashcard {
+    width: 100%;
+    flex-grow: 1; 
+    position: relative;
+    transform-style: preserve-3d; 
+    transition: transform 0.7s cubic-bezier(0.3, 1.0, 0.3, 1.0); 
+    cursor: pointer;
+    background-color: #ffffff; 
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08), 0px 1px 3px rgba(0,0,0,0.03);
+    border-radius: 18px; 
+    border: 1px solid rgba(0,0,0,0.05); 
+}
+
+.flashcard.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    backface-visibility: hidden; 
+    
+    display: flex;
+    flex-direction: column; /* Wichtig für .card-text-content mit flex-grow */
+    align-items: flex-start;    
+    justify-content: flex-start; 
+    
+    padding: 30px 35px; /* Innenabstand der Karte, bildet den "Rahmen" */
+    border-radius: 18px; 
+    font-size: 1.1em;       
+    text-align: left;       
+    line-height: 1.6;       
+    color: #1d1d1f; 
+    background-color: #ffffff; /* Hintergrund für die Kartenseiten selbst */
+    /* overflow-y: auto; /* WURDE ENTFERNT, SCROLLEN IST JETZT IN .card-text-content */
+}
+
+.card-front {
+    z-index: 2; 
+    background:#bddcff;
+}
+
+.card-back {
+    transform: rotateY(180deg); 
+    z-index: 1; 
+    background:#fff;
+}
+
+.card-text-content { 
+    width: 100%;        
+    word-wrap: break-word; 
+    white-space: pre-wrap;
+    font-size: 17px; 
+    line-height: 1.65; 
+
+    flex-grow: 1;           /* Erlaubt diesem Div, den verfügbaren Platz zu füllen */
+    overflow-y: auto;       /* Macht DIESES Div scrollbar */
+    padding-bottom: 100px;  /* "Scroll-Weiter"-Platz am Ende des Inhalts HIER */
+    min-height: 0;          /* WICHTIG: Für korrektes Scrollverhalten von Flex-Kindern */
+    margin-bottom: 10px;    /* Kleiner Abstand, falls der Zähler sehr nah kommt */
+}
+
+.card-text-content strong, 
+.card-text-content b { font-weight: 600; }
+
+.card-text-content em, 
+.card-text-content i { font-style: italic; }
+
+.card-text-content ul, 
+.card-text-content ol {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    padding-left: 25px; 
+}
+.card-text-content li { margin-bottom: 0.4em; }
+.card-text-content p { 
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+}
+
+#card-counter, 
+#card-counter-back {
+    font-size: 13px;
+    font-weight: 500;
+    position: absolute; 
+    bottom: 15px; /* Abstand vom unteren Rand von .card-front/.card-back */
+    right: 35px;   /* Abstand vom linken Rand (passend zum Padding von .card-front/back) */
+    color: #8a8a8e; 
+    padding: 0;
+    z-index: 10;
+    background: #fff;
+    padding: 3px 9px;
+    border-radius: 5px;      
+}
+
+.navigation {
+    display: flex;
+    gap: 12px; 
+    margin-top: 25px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 15px; 
+    font-weight: 500; 
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    background-color: #e9e9eb; 
+    color: #007aff; 
+    transition: background-color 0.2s ease-out, transform 0.1s ease-out;
+}
+
+button:hover {
+    background-color: #dcdce1; 
+}
+
+button:active {
+    background-color: #d1d1d6; 
+    transform: scale(0.97);
+}
+
+/* Spezifische Stile für Buttons */
+#prev-button,
+#flip-button,
+#next-button {
+    background-color: #007aff;
+    color: #fff;
+}
+
+#prev-button:hover,
+#flip-button:hover,
+#next-button:hover {
+    background-color: #0063cc;
+}
+
+#prev-button:active,
+#flip-button:active,
+#next-button:active {
+    background-color: #004f9e;
+}
+
+/* Dezenter Stil für Cache-Button */
+.navigation button:last-child {
+    background-color: #f2f2f7;
+    color: #6e6e73;
+    border: 1px solid #d1d1d6;
+}
+
+.navigation button:last-child:hover {
+    background-color: #e4e4ea;
+}
+
+.navigation button:last-child:active {
+    background-color: #dadade;
+}
+
+
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.7em;
+        margin-bottom: 20px;
+    }
+
+    .flashcard-container {
+        width: 100%;
+        min-height: 400px;
+    }
+
+    .card-front, .card-back {
+        padding: 20px 20px;
+        font-size: 1em;
+    }
+
+    .card-text-content {
+        font-size: 16px;
+        padding-bottom: 80px;
+    }
+
+    #card-counter, #card-counter-back {
+        right: 20px;
+        bottom: 10px;
+        font-size: 12px;
+    }
+
+    .source-selector-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    #source-select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    #progress-container {
+        width: 100%;
+    }
+
+    .navigation {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.4em;
+    }
+
+    .card-front, .card-back {
+        padding: 15px;
+    }
+
+    .card-text-content {
+        font-size: 15px;
+    }
+
+    #card-counter, #card-counter-back {
+        font-size: 11px;
+    }
+}
