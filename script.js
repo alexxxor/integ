@@ -151,6 +151,7 @@ function handleSourceChange() {
 
 // --- Drag & Swipe-Gesten ---
 let dragStartX = 0;
+let dragStartY = 0;
 let currentTranslateX = 0;
 let isDragging = false;
 
@@ -160,16 +161,24 @@ flashcardElement.addEventListener('touchend', endDrag);
 
 function startDrag(e) {
     dragStartX = e.touches[0].clientX;
+    dragStartY = e.touches[0].clientY;
     isDragging = true;
     flashcardElement.classList.add('dragging');
 }
 
 function dragCard(e) {
     if (!isDragging) return;
+
     const currentX = e.touches[0].clientX;
-    currentTranslateX = currentX - dragStartX;
-    flashcardElement.style.transform = `translateX(${currentTranslateX}px)`;
-    e.preventDefault();
+    const currentY = e.touches[0].clientY;
+    const deltaX = currentX - dragStartX;
+    const deltaY = Math.abs(currentY - dragStartY);
+
+    if (Math.abs(deltaX) > deltaY) {
+        currentTranslateX = deltaX;
+        flashcardElement.style.transform = `translateX(${currentTranslateX}px)`;
+        e.preventDefault();
+    }
 }
 
 function endDrag() {
